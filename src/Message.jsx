@@ -6,7 +6,7 @@ const Message = () => {
 
   setTimeout(() => {
     setLoader(false);
-  }, 1000);
+  }, 2500);
 
   const handleYes = () => {
     setButton("yes");
