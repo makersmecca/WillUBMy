@@ -11,7 +11,7 @@ body {
   background-repeat: repeat;
   font-family: "Press Start 2P", cursive;
   animation: bgMove 6s ease infinite;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 @keyframes bgMove {
@@ -44,6 +44,7 @@ body {
   background: #fff8de;
   border: 8px solid #ff7444;
   box-shadow: 12px 12px 0 #f08787;
+  margin-bottom: 75px;
 }
 
 .max-window {
@@ -59,6 +60,10 @@ body {
 @media (min-width: 600px) {
   .window {
     width: 400px;
+  }
+
+  .body {
+    overflow: auto;
   }
 }
 
@@ -79,6 +84,7 @@ body {
 .controls {
   display: flex;
   align-items: center;
+  /* gap: 5px; */
 }
 
 .controls .btn {
@@ -87,8 +93,8 @@ body {
 }
 
 .controls .btn:hover {
-  scale: 1.1;
-  transition: all 0.2s;
+  scale: 1.2;
+  transition: all 0.2s ease-in-out;
 }
 
 .hearts {
@@ -110,27 +116,52 @@ body {
 }
 
 .max-content {
+  margin-top: 25px;
   padding: 30px 20px;
   text-align: center;
   height: 90vh;
   display: flex;
   flex-direction: column;
-  /* align-items: flex-end; */
+  align-items: flex-end;
   justify-content: center;
 }
 
 .message {
   color: #f08787;
-  font-size: 12px;
+  font-size: 23px;
   line-height: 1.8;
   margin-bottom: 20px;
   margin-top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0px 10px;
+  text-align: center;
+}
+
+.sure-message {
+  color: #f08787;
+  font-size: 23px;
+  line-height: 1.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.landing-cat {
+  cursor: pointer;
+}
+
+.landing-cat:hover {
+  scale: 1.2;
+  transition: all 0.2s ease-in-out;
 }
 
 .pixel-btn {
+  /* justify-self: center;
+  align-self: center; */
+  width: 344px;
   background: #ffcdc9;
   border: 4px solid #ff7444;
   border-radius: 10px;
@@ -146,6 +177,37 @@ body {
   /* smooth scale + color start */
   transition: transform 0.2s ease;
   animation: scaleButton 1s ease infinite;
+}
+
+.pixel-btn::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  right: 28px;
+  /* move tail left/right */
+  width: 20px;
+  height: 20px;
+  background: #ffcdc9;
+  border-left: 4px solid #ff7444;
+  border-bottom: 4px solid #ff7444;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 600px) {
+  .pixel-btn {
+    justify-self: center;
+    align-self: center;
+  }
+}
+
+.cat-gif {
+  align-self: flex-end;
+  /* margin-right: 20px; */
+}
+
+.max-cat-gif {
+  align-self: flex-end;
+  /* margin-right: 20px; */
 }
 
 @keyframes scaleButton {
@@ -238,4 +300,76 @@ body {
   100% {
     opacity: 30%;
   }
+}
+
+.option-btns {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  width: 100%;
+}
+
+.sure-option-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  width: 100%;
+}
+
+.yes-btn:hover,
+.no-btn:hover {
+  cursor: pointer;
+  scale: 1.2;
+}
+
+.susDog {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.yes-message,
+.no-message,
+.yesMessage {
+  color: #f08787;
+  font-size: 23px;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 10px;
+  margin-top: 40px;
+}
+
+.yesMessage {
+  position: relative;
+}
+
+.confetti-gif {
+  position: absolute;
+  height: 150px;
+  left: 0;
+  top: 0;
+  width: 50%;
+}
+
+.yes-text {
+  transition: transform 0.2s ease;
+  animation: scaleButton 1s ease infinite;
+
+}
+
+.yes-gif,
+.no-gif {
+  margin-top: 30px;
+}
+
+.yes-gifs {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
 }
