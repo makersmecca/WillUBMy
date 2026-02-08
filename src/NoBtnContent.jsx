@@ -3,14 +3,14 @@ const NoBtnContent = () => {
   const [button, setButton] = useState("");
 
   const happyAudioRef = useRef(null);
-  const faahAudioRef = useRef(null);
+  const meowSadAudioRef = useRef(null);
 
   const handleSureYes = () => {
-    if (!faahAudioRef.current) {
-      faahAudioRef.current = new Audio("/faah.mp3");
+    if (!meowSadAudioRef.current) {
+      meowSadAudioRef.current = new Audio("/meowSad.mp3");
     }
-    faahAudioRef.current.currentTime = 0;
-    faahAudioRef.current.play();
+    meowSadAudioRef.current.currentTime = 0;
+    meowSadAudioRef.current.play();
     setButton("no");
   };
   const handleSureNo = () => {
@@ -28,9 +28,9 @@ const NoBtnContent = () => {
         happyAudioRef.current.pause();
         happyAudioRef.current.currentTime = 0;
       }
-      if (faahAudioRef.current) {
-        faahAudioRef.current.pause();
-        faahAudioRef.current.currentTime = 0;
+      if (meowSadAudioRef.current) {
+        meowSadAudioRef.current.pause();
+        meowSadAudioRef.current.currentTime = 0;
       }
     };
   }, []);
