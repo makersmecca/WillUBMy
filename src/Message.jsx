@@ -12,29 +12,45 @@ const Message = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const audioRef = useRef(null);
+  const prettyAudioRef = useRef(null);
+  const happyAudioRef = useRef(null);
 
   useEffect(() => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio("/prettylil.mp3");
+    if (!prettyAudioRef.current) {
+      prettyAudioRef.current = new Audio("/prettylil.mp3");
     }
 
     if (button === "") {
-      audioRef.current.play();
+      prettyAudioRef.current.play();
     } else {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
+      prettyAudioRef.current.pause();
+      prettyAudioRef.current.currentTime = 0;
     }
     return () => {
-      audioRef.current.pause();
+      prettyAudioRef.current.pause();
     };
   }, [button]);
 
   const handleYes = () => {
     setButton("yes");
-    const happyAudio = new Audio("/happyhappy.mp3");
-    happyAudio.play();
+    if (!happyAudioRef.current) {
+      happyAudioRef.current = new Audio("/happyhappy.mp3");
+    }
+    happyAudioRef.current.currentTime = 0;
+    happyAudioRef.current.play();
+    // const happyAudio = new Audio("/happyhappy.mp3");
+    // happyAudio.play();
   };
+
+  useEffect(() => {
+    return () => {
+      if (happyAudioRef.current) {
+        happyAudioRef.current.pause();
+        happyAudioRef.current.currentTime = 0;
+      }
+    };
+  }, []);
+
   const handleNo = () => {
     setButton("no");
   };

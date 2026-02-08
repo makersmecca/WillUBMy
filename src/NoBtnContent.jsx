@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 const NoBtnContent = () => {
   const [button, setButton] = useState("");
+
+  const happyAudioRef = useRef(null);
+
   const handleSureYes = () => {
     const faahAudio = new Audio("/faah.mp3");
     faahAudio.play();
@@ -8,9 +11,21 @@ const NoBtnContent = () => {
   };
   const handleSureNo = () => {
     setButton("yes");
-    const happyAudio = new Audio("/happyhappy.mp3");
-    happyAudio.play();
+    if (!happyAudioRef.current) {
+      happyAudioRef.current = new Audio("/happyhappy.mp3");
+    }
+    happyAudioRef.current.currentTime = 0;
+    happyAudioRef.current.play();
   };
+
+  useEffect(() => {
+    return () => {
+      if (happyAudioRef.current) {
+        happyAudioRef.current.pause();
+        happyAudioRef.current.currentTime = 0;
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const susAudio = new Audio("/SusSound.mp3");
