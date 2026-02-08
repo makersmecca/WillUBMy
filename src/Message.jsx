@@ -1,16 +1,56 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import NoBtnContent from "./NoBtnContent";
 const Message = () => {
   const [loader, setLoader] = useState(true);
   const [button, setButton] = useState("");
 
-  setTimeout(() => {
-    setLoader(false);
-  }, 2500);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoader(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const prettyAudioRef = useRef(null);
+  const happyAudioRef = useRef(null);
+
+  useEffect(() => {
+    if (!prettyAudioRef.current) {
+      prettyAudioRef.current = new Audio("/prettylil.mp3");
+    }
+
+    if (button === "") {
+      prettyAudioRef.current.play();
+    } else {
+      prettyAudioRef.current.pause();
+      prettyAudioRef.current.currentTime = 0;
+    }
+    return () => {
+      prettyAudioRef.current.pause();
+    };
+  }, [button]);
 
   const handleYes = () => {
     setButton("yes");
+    if (!happyAudioRef.current) {
+      happyAudioRef.current = new Audio("/happyhappy.mp3");
+    }
+    happyAudioRef.current.currentTime = 0;
+    happyAudioRef.current.play();
+    // const happyAudio = new Audio("/happyhappy.mp3");
+    // happyAudio.play();
   };
+
+  useEffect(() => {
+    return () => {
+      if (happyAudioRef.current) {
+        happyAudioRef.current.pause();
+        happyAudioRef.current.currentTime = 0;
+      }
+    };
+  }, []);
+
   const handleNo = () => {
     setButton("no");
   };
@@ -51,12 +91,13 @@ const Message = () => {
           ) : button === "yes" ? (
             <div className="yesMessage">
               <span className="yes-text">Yaaayyy!!!!</span>
-              <div>
-                <img className="confetti-gif" src="/images/confetti.gif" />
+              <div className="confetti-container">
+                <img className="confetti-gif1" src="/images/confetti.gif" />
+                <img className="confetti-gif2" src="/images/confetti.gif" />
               </div>
               <div className="yes-gifs">
-                <img src="/images/cat_heart.gif" height={150} width={150} />
-                <img src="/images/idc.gif" height={150} width={150} />
+                <img src="/images/cat_heart.gif" height={180} width={180} />
+                <img src="/images/idc.gif" height={180} width={180} />
               </div>
             </div>
           ) : (

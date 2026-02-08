@@ -1,12 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 const NoBtnContent = () => {
   const [button, setButton] = useState("");
+
+  const happyAudioRef = useRef(null);
+  const faahAudioRef = useRef(null);
+
   const handleSureYes = () => {
+    if (!faahAudioRef.current) {
+      faahAudioRef.current = new Audio("/faah.mp3");
+    }
+    faahAudioRef.current.currentTime = 0;
+    faahAudioRef.current.play();
     setButton("no");
   };
   const handleSureNo = () => {
     setButton("yes");
+    if (!happyAudioRef.current) {
+      happyAudioRef.current = new Audio("/happyhappy.mp3");
+    }
+    happyAudioRef.current.currentTime = 0;
+    happyAudioRef.current.play();
   };
+
+  useEffect(() => {
+    return () => {
+      if (happyAudioRef.current) {
+        happyAudioRef.current.pause();
+        happyAudioRef.current.currentTime = 0;
+      }
+      if (faahAudioRef.current) {
+        faahAudioRef.current.pause();
+        faahAudioRef.current.currentTime = 0;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (button === "") {
+      const susAudio = new Audio("/SusSound.mp3");
+      susAudio.play();
+    }
+  }, [button]);
+
   return (
     <>
       {button === "" ? (
@@ -43,8 +78,8 @@ const NoBtnContent = () => {
           <img
             className="yes-gif"
             src="/images/idc.gif"
-            height={150}
-            width={150}
+            height={250}
+            width={250}
           />
         </div>
       ) : (
@@ -53,8 +88,8 @@ const NoBtnContent = () => {
           <img
             className="no-gif"
             src="/images/crying.gif"
-            height={150}
-            width={150}
+            height={250}
+            width={250}
           />
         </div>
       )}
