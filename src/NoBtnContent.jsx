@@ -3,10 +3,14 @@ const NoBtnContent = () => {
   const [button, setButton] = useState("");
 
   const happyAudioRef = useRef(null);
+  const faahAudioRef = useRef(null);
 
   const handleSureYes = () => {
-    const faahAudio = new Audio("/faah.mp3");
-    faahAudio.play();
+    if (!faahAudioRef.current) {
+      faahAudioRef.current = new Audio("/faah.mp3");
+    }
+    faahAudioRef.current.currentTime = 0;
+    faahAudioRef.current.play();
     setButton("no");
   };
   const handleSureNo = () => {
@@ -24,13 +28,19 @@ const NoBtnContent = () => {
         happyAudioRef.current.pause();
         happyAudioRef.current.currentTime = 0;
       }
+      if (faahAudioRef.current) {
+        faahAudioRef.current.pause();
+        faahAudioRef.current.currentTime = 0;
+      }
     };
   }, []);
 
   useEffect(() => {
-    const susAudio = new Audio("/SusSound.mp3");
-    susAudio.play();
-  }, []);
+    if (button === "") {
+      const susAudio = new Audio("/SusSound.mp3");
+      susAudio.play();
+    }
+  }, [button]);
 
   return (
     <>
