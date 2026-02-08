@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const NoBtnContent = () => {
   const [button, setButton] = useState("");
   const handleSureYes = () => {
+    const faahAudio = new Audio("/faah.mp3");
+    faahAudio.play();
     setButton("no");
   };
   const handleSureNo = () => {
     setButton("yes");
+    const happyAudio = new Audio("/happyhappy.mp3");
+    happyAudio.play();
   };
+
+  useEffect(() => {
+    const susAudio = new Audio("/SusSound.mp3");
+    susAudio.play();
+  }, []);
+
   return (
     <>
       {button === "" ? (
@@ -43,8 +53,8 @@ const NoBtnContent = () => {
           <img
             className="yes-gif"
             src="/images/idc.gif"
-            height={150}
-            width={150}
+            height={250}
+            width={250}
           />
         </div>
       ) : (
@@ -53,8 +63,8 @@ const NoBtnContent = () => {
           <img
             className="no-gif"
             src="/images/crying.gif"
-            height={150}
-            width={150}
+            height={250}
+            width={250}
           />
         </div>
       )}

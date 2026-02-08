@@ -232,6 +232,12 @@ body {
   }
 }
 
+.pixel-btn:hover::after {
+  transform: scale(1.2), rotate(-45deg);
+  animation: pixelColorCycle 2s steps(1) infinite;
+  transition: all 0.2s ease;
+}
+
 .pixel-btn:hover {
   transform: scale(1.2);
   animation: pixelColorCycle 2s steps(1) infinite;
@@ -345,17 +351,36 @@ body {
   margin-top: 40px;
 }
 
-.yesMessage {
+/* .yesMessage {
+  position: relative;
+} */
+
+.window {
   position: relative;
 }
 
-.confetti-gif {
+.confetti-container {
   position: absolute;
-  height: 150px;
+  top: 30;
+}
+
+.confetti-gif1 {
+  /* position: absolute; */
+  height: 250px;
   left: 0;
   top: 0;
   width: 50%;
 }
+
+.confetti-gif2 {
+  /* position: absolute; */
+  height: 250px;
+  right: 0;
+  top: 0;
+  width: 50%;
+  transform: rotateY(180deg);
+}
+
 
 .yes-text {
   transition: transform 0.2s ease;
@@ -363,10 +388,13 @@ body {
 
 }
 
-.yes-gif,
-.no-gif {
+/* .yes-gif {
   margin-top: 30px;
-}
+} */
+
+/* .no-gif {
+  margin-top: 30px;
+} */
 
 .yes-gifs {
   display: flex;

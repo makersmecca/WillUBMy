@@ -3,7 +3,8 @@ const Landing = ({ setCurrentPage, maximize }) => {
   return (
     <div className={`${maximize ? "max-content" : "content"}`}>
       <button className="pixel-btn" onClick={() => setCurrentPage("message")}>
-        You have a new Message!!
+        <img src="/images/envelope.png" height={40} width={80} />
+        <span>You have a new Message!!</span>
       </button>
       <div className={`${maximize ? "max-cat-gif" : "cat-gif"}`}>
         <img
