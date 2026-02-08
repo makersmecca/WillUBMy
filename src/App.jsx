@@ -45,6 +45,16 @@ export default function App() {
           <Message />
         )}
       </div>
+      <span className="footer">
+        Made with{" "}
+        <img
+          src="/images/hearticon.png"
+          alt="heart icon"
+          height={13}
+          width={14}
+        />{" "}
+        by Ayudh
+      </span>
     </div>
   );
 }
